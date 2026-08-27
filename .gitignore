@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+build/
+backend/eval*.db
+backend/alembic/versions/buildpulse.db
+sample-projects/analytic-engine/build_report_*.json
+sample-projects/analytic-engine-java/build_report_*.json
+tools/junit/*.jar
+.DS_Store

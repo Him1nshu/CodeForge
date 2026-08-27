@@ -1,0 +1,2 @@
+[console_scripts]
+buildpulse = buildpulse.cli:main

@@ -1,0 +1,22 @@
+[tool.ruff]
+line-length = 150
+target-version = "py313"
+exclude = ["migrations/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I", "UP", "RUF", "C4"]
+ignore = [
+    # FastAPI standard idiom: Depends/Header as argument defaults.
+    "B008",
+    # dict({...}) vs {} — acceptable for mutable defaults in tests.
+    "C408",
+    # PEP-695 generics on Pydantic models are not reliably supported yet.
+    "UP046",
+    # Unicode en-dashes/arrows in user-facing messages are intentional.
+    "RUF001",
+    "RUF002",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

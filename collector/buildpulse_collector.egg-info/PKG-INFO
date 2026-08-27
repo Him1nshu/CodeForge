@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: buildpulse-collector
+Version: 0.1.0
+Summary: BuildPulse collector CLI — analyze a C++ build and upload a build_report.json
+Requires-Python: >=3.11
