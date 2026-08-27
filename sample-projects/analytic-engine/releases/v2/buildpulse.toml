@@ -1,0 +1,15 @@
+[project]
+name = "AnalyticEngine"
+repository_url = ""
+branch = "main"
+build_command = "build.bat"
+test_command = "run-tests.bat"
+benchmark_command = "run-benchmarks.bat"
+binary_path = "build/pulse.exe"
+
+[analyzers.complexity]
+tool = "internal"
+complexity_threshold = 10
+
+[analyzers.architecture.layers]
+application = ["src"]

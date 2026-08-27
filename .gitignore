@@ -8,8 +8,6 @@ backend/eval*.db
 backend/alembic/versions/buildpulse.db
 sample-projects/analytic-engine/build_report_*.json
 sample-projects/analytic-engine-java/build_report_*.json
-# samples own their release git history
-sample-projects/analytic-engine/
-sample-projects/analytic-engine-java/
-tools/junit/*.jar
+*.egg-info/
+*.tsbuildinfo
 .DS_Store

@@ -1,0 +1,13 @@
+[project]
+name = "AnalyticEngine Java"
+language = "java"
+repository_url = ""
+branch = "main"
+build_command = "build.bat"
+test_command = "run-tests.bat"
+benchmark_command = "run-benchmarks.bat"
+binary_path = ""
+
+[analyzers.complexity]
+tool = "internal"
+complexity_threshold = 10
