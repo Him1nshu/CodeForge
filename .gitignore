@@ -5,7 +5,7 @@ node_modules/
 dist/
 build/
 backend/eval*.db
-backend/alembic/versions/buildpulse.db
+backend/alembic/versions/codeforge.db
 sample-projects/analytic-engine/build_report_*.json
 sample-projects/analytic-engine-java/build_report_*.json
 *.egg-info/

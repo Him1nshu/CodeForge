@@ -13,8 +13,8 @@ import re
 import time
 from pathlib import Path
 
-from buildpulse.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult, resolve_command, run_command
-from buildpulse.report import utcnow_iso
+from codeforge.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult, resolve_command, run_command
+from codeforge.report import utcnow_iso
 
 _JAVAC_WARNING_RE = re.compile(r"\b(?:warning|warn):\s", re.IGNORECASE)
 _JAVAC_ERROR_RE = re.compile(r"\b(?:error|fatal error):\s", re.IGNORECASE)

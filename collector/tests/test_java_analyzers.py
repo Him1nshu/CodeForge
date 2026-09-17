@@ -5,10 +5,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from buildpulse.analyzers import architecture, complexity, dependencies
-from buildpulse.analyzers import build as build_analyzer
-from buildpulse.analyzers import tests as tests_analyzer
-from buildpulse.analyzers.base import AnalyzerContext
+from codeforge.analyzers import architecture, complexity, dependencies
+from codeforge.analyzers import build as build_analyzer
+from codeforge.analyzers import tests as tests_analyzer
+from codeforge.analyzers.base import AnalyzerContext
 
 JAVA_LAYERS = {
     "presentation": ["src/main/java/avlog/presentation"],

@@ -1,6 +1,6 @@
 # analytic-engine
 
-Demo project used to evaluate the BuildPulse pipeline. One git history, five
+Demo project used to evaluate the CODEFORGE pipeline. One git history, five
 releases. Each release intentionally degrades software metrics so the dashboard
 shows real, human-interpretable regressions:
 
@@ -19,4 +19,4 @@ real, measured timings of more per-iteration work.
 - `pulse.exe --selftest` prints ctest-style test lines (real pass/fail logic).
 - `pulse.exe --bench` times real workloads with `std::chrono`.
 
-Build with: `buildpulse collect` at this directory (see `buildpulse.toml`).
+Build with: `codeforge collect` at this directory (see `codeforge.toml`).

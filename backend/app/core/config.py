@@ -8,17 +8,17 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Central configuration.
 
-    DATABASE_URL defaults to PostgreSQL; override to sqlite:///./buildpulse.db
+    DATABASE_URL defaults to PostgreSQL; override to sqlite:///./codeforge.db
     (or :memory: for tests) when Docker/Postgres is unavailable.
     """
 
-    model_config = SettingsConfigDict(env_file=".env", env_prefix="BUILDPULSE_", extra="ignore")
+    model_config = SettingsConfigDict(env_file=".env", env_prefix="CODEFORGE_", extra="ignore")
 
-    app_name: str = "BuildPulse"
+    app_name: str = "CODEFORGE"
     debug: bool = False
     api_version: str = "1.0"
 
-    database_url: str = "postgresql+psycopg://buildpulse:buildpulse@localhost:5432/buildpulse"
+    database_url: str = "postgresql+psycopg://codeforge:codeforge@localhost:5432/codeforge"
 
     # Optional auth: if a project has an api_key set it must be presented
     # via the X-API-Key header. Backend cannot be locked down globally by default.

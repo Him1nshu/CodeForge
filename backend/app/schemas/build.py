@@ -1,7 +1,7 @@
 """Build report (collector contract) and build response schemas.
 
 The BuildReport schema is the single validation contract used both by the
-`buildpulse` CLI (writing build_report.json) and the backend ingestion endpoint.
+`codeforge` CLI (writing build_report.json) and the backend ingestion endpoint.
 """
 
 import uuid

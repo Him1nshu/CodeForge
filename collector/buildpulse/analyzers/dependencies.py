@@ -12,8 +12,8 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from buildpulse.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult
-from buildpulse.report import load_last_report
+from codeforge.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult
+from codeforge.report import load_last_report
 
 _LINE = re.compile(r"^\s*([^:#\s]+)\s*:\s*([^\s]+)\s*$")
 _GRADLE_DEP = re.compile(

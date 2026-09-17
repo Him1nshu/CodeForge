@@ -1,4 +1,4 @@
-# BuildPulse — Final Architecture
+# CODEFORGE — Final Architecture
 
 ## 1. Decision summary
 
@@ -37,14 +37,14 @@
 │ Collector (separate process, runs at build time)              │
 │   analyzers / build, static, complexity, tests, benchmarks,   │
 │   dependencies, architecture   ->  build_report.json          │
-│   CLI: buildpulse collect / upload                            │
+│   CLI: codeforge collect / upload                            │
 └──────────────────────────────────────────────────────────────┘
 ```
 
 ## 3. Monorepo layout
 
 ```text
-buildpulse/
+codeforge/
 ├── backend/                 FastAPI service
 │   ├── app/
 │   │   ├── api/             routers (projects, builds, health, metrics,
@@ -60,7 +60,7 @@ buildpulse/
 │   ├── requirements.txt
 │   └── Dockerfile
 ├── collector/
-│   ├── buildpulse/
+│   ├── codeforge/
 │   │   ├── analyzers/       build.py, static.py, complexity.py, tests.py,
 │   │   │                    benchmarks.py, dependencies.py, architecture.py
 │   │   ├── collectors/      cmake/gcc tool discovery
@@ -81,7 +81,7 @@ buildpulse/
 ├── sample-projects/         C++ demo: app v1..v5 + CMake
 ├── infrastructure/
 │   ├── docker-compose.yml
-│   └── github-actions/      buildpulse-analysis.yml
+│   └── github-actions/      codeforge-analysis.yml
 ├── docs/
 └── README.md
 ```

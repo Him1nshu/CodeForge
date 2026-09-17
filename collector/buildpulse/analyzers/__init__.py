@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from buildpulse.analyzers import architecture, benchmarks, build, complexity, dependencies, git, static_analysis, tests
-from buildpulse.analyzers.base import Analyzer, AnalyzerContext
+from codeforge.analyzers import architecture, benchmarks, build, complexity, dependencies, git, static_analysis, tests
+from codeforge.analyzers.base import Analyzer, AnalyzerContext
 
 REGISTRY: dict[str, Analyzer] = {
     "git": git.analyze_git,

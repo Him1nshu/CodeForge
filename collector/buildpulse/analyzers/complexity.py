@@ -12,7 +12,7 @@ import math
 import shutil
 from dataclasses import dataclass
 
-from buildpulse.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult
+from codeforge.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult
 
 _SOURCE_SUFFIXES = {".cpp", ".cc", ".cxx", ".c", ".hpp", ".hh", ".h", ".java"}
 _DECISION_TOKENS = {"if", "for", "while", "catch", "case", "&&", "||", "?"}

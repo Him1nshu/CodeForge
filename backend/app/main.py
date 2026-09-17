@@ -1,4 +1,4 @@
-"""BuildPulse API application entrypoint."""
+"""CODEFORGE API application entrypoint."""
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,7 +13,7 @@ setup_logging()
 def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(
-        title="BuildPulse",
+        title="CODEFORGE",
         description="Engineering Intelligence Platform for C++ projects.",
         version=settings.api_version,
         openapi_url="/openapi.json",

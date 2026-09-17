@@ -17,7 +17,7 @@ def load_last_report(repo_root: Path) -> dict[str, Any] | None:
     candidates = [
         repo_root / "build_report.json",
         repo_root / "build" / "build_report.json",
-        repo_root / ".buildpulse" / "build_report.json",
+        repo_root / ".codeforge" / "build_report.json",
     ]
     for path in candidates:
         if path.exists():

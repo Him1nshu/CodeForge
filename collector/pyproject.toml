@@ -3,16 +3,16 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "buildpulse-collector"
+name = "codeforge-collector"
 version = "0.1.0"
-description = "BuildPulse collector CLI — analyze a C++ build and upload a build_report.json"
+description = "CODEFORGE collector CLI — analyze a C++ build and upload a build_report.json"
 requires-python = ">=3.11"
 
 [project.scripts]
-buildpulse = "buildpulse.cli:main"
+codeforge = "codeforge.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["buildpulse*"]
+include = ["codeforge*"]
 
 [tool.ruff]
 line-length = 150

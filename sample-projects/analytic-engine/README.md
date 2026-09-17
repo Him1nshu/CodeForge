@@ -1,6 +1,6 @@
 # analytic-engine
 
-Demo C++ project used to evaluate the BuildPulse pipeline. The release history
+Demo C++ project used to evaluate the CODEFORGE pipeline. The release history
 is stored as **snapshots** under `releases/v1..v5`. Each release intentionally
 degrades software metrics so the dashboard shows real, human-interpretable
 regressions:

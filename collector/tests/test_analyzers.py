@@ -5,8 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from buildpulse.analyzers import architecture, benchmarks, complexity, dependencies
-from buildpulse.analyzers.base import AnalyzerContext
+from codeforge.analyzers import architecture, benchmarks, complexity, dependencies
+from codeforge.analyzers.base import AnalyzerContext
 
 LAYERS = {
     "presentation": ["src/presentation"],

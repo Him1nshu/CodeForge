@@ -1,4 +1,4 @@
-"""BuildPulse initial schema.
+"""CODEFORGE initial schema.
 
 Revision ID: 0001_initial
 Revises:

@@ -1,4 +1,4 @@
-"""buildpulse CLI: collect, upload, init, config."""
+"""codeforge CLI: collect, upload, init, config."""
 
 from __future__ import annotations
 
@@ -6,11 +6,11 @@ import argparse
 import sys
 from pathlib import Path
 
-from buildpulse import __version__
-from buildpulse.analyzers import run_all
-from buildpulse.analyzers.base import AnalyzerContext
-from buildpulse.config import load_config
-from buildpulse.report import save_report
+from codeforge import __version__
+from codeforge.analyzers import run_all
+from codeforge.analyzers.base import AnalyzerContext
+from codeforge.config import load_config
+from codeforge.report import save_report
 
 
 def _fresh_report(project: dict, collector_run_id: str) -> dict:
@@ -46,7 +46,7 @@ def cmd_collect(args: argparse.Namespace) -> int:
     if not root.is_dir():
         print(f"error: repo path is not a directory: {root}", file=sys.stderr)
         return 2
-    cfg = load_config(Path(args.config) if args.config and args.config != "autodetect" else root / "buildpulse.toml")
+    cfg = load_config(Path(args.config) if args.config and args.config != "autodetect" else root / "codeforge.toml")
     project = cfg["project"]
     report = _fresh_report(project, args.run_id or project.get("collector_run_id"))
     if project.get("repository_url"):
@@ -152,33 +152,33 @@ def cmd_config(args: argparse.Namespace) -> int:
     import json
 
     root = Path(args.repo).resolve()
-    cfg = load_config(root / "buildpulse.toml")
+    cfg = load_config(root / "codeforge.toml")
     print(json.dumps(cfg, indent=2))
     return 0
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="buildpulse", description="BuildPulse collector CLI")
-    parser.add_argument("--version", action="version", version=f"buildpulse {__version__}")
+    parser = argparse.ArgumentParser(prog="codeforge", description="CODEFORGE collector CLI")
+    parser.add_argument("--version", action="version", version=f"codeforge {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p = sub.add_parser("collect", help="run analyzers and write build_report.json")
     p.add_argument("--repo", default=".", help="repository root (default: current dir)")
-    p.add_argument("--config", default="autodetect", help="path to buildpulse.toml (default: <repo>/buildpulse.toml)")
+    p.add_argument("--config", default="autodetect", help="path to codeforge.toml (default: <repo>/codeforge.toml)")
     p.add_argument("--out", default="build_report.json", help="output path")
     p.add_argument("--run-id", default="", help="collector run id (default: random)")
     p.add_argument("--skip", nargs="*", default=[], help="analyzers to skip (git build tests static_analysis complexity benchmarks dependencies architecture)")
     p.set_defaults(func=cmd_collect)
 
-    p = sub.add_parser("upload", help="POST a build_report.json to the BuildPulse API")
+    p = sub.add_parser("upload", help="POST a build_report.json to the CODEFORGE API")
     p.add_argument("--api", default="http://localhost:8000", help="API base URL")
     p.add_argument("--project", required=True, help="project UUID")
     p.add_argument("--report", default="build_report.json", help="report file to upload")
     p.add_argument("--api-key", default="", help="optional X-API-Key for the project")
     p.set_defaults(func=cmd_upload)
 
-    p = sub.add_parser("init", help="write a starter buildpulse.toml")
-    p.add_argument("--path", default="buildpulse.toml", help="destination path")
+    p = sub.add_parser("init", help="write a starter codeforge.toml")
+    p.add_argument("--path", default="codeforge.toml", help="destination path")
     p.add_argument("--language", default="cpp", choices=["cpp", "java"], help="starter template language")
     p.set_defaults(func=cmd_init)
 
