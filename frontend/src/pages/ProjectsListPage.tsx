@@ -34,7 +34,22 @@ export function ProjectsListPage() {
         />
       </div>
       {error ? <p className="text-sm text-red-400">{error}</p> : null}
-      {projects.length === 0 && !error ? <p className="text-sm text-slate-500">No projects found.</p> : null}
+      {projects.length === 0 && !error ? (
+        <div className="rounded-lg border border-dashed border-bp-edge bg-bp-panel/60 p-8 text-center">
+          <h2 className="text-lg font-medium text-slate-200">No projects yet</h2>
+          <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-slate-400">
+            Create a project through the API, then upload a collector report to populate the dashboard.
+          </p>
+          <a
+            href="http://127.0.0.1:8000/docs"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex rounded-md bg-sky-500 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-sky-400"
+          >
+            Open API docs
+          </a>
+        </div>
+      ) : null}
       <div className="flex flex-col gap-3">
         {projects.map((p) => (
           <Link
