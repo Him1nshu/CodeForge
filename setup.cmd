@@ -7,7 +7,7 @@ set "PYTHON=%VENV%\Scripts\python.exe"
 
 echo.
 echo ========================================
-echo   BuildPulse local setup
+echo   CODEFORGE local setup
 echo ========================================
 echo.
 
@@ -61,10 +61,10 @@ if errorlevel 1 (
 popd
 
 echo [5/6] Starting the backend API...
-start "BuildPulse API" /D "%ROOT%backend" cmd /k ""%PYTHON%" -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000"
+start "CODEFORGE API" /D "%ROOT%backend" cmd /k ""%PYTHON%" -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000"
 
 echo [6/6] Starting the frontend dashboard...
-start "BuildPulse Frontend" /D "%ROOT%frontend" cmd /k "npm run dev -- --host 127.0.0.1"
+start "CODEFORGE Frontend" /D "%ROOT%frontend" cmd /k "npm run dev -- --host 127.0.0.1"
 
 echo.
 echo Setup complete.
