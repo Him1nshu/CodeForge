@@ -1,4 +1,4 @@
-"""buildpulse.toml loading (standard library tomllib)."""
+"""codeforge.toml loading (standard library tomllib)."""
 
 from __future__ import annotations
 

@@ -1,8 +1,8 @@
-# BuildPulse — Architecture Analysis
+# CODEFORGE — Architecture Analysis
 
 ## 1. Goal
 
-BuildPulse is an Engineering Intelligence Platform that extends CI from
+CODEFORGE is an Engineering Intelligence Platform that extends CI from
 "did it pass?" to "is the software getting healthier or sicker over time?". It
 collects build, code, test, benchmark, dependency, and architecture metrics
 from successive versions of a C++ project, stores them historically, computes
@@ -13,7 +13,7 @@ actionable insights through a React dashboard.
 
 | Component | Responsibility |
 | --- | --- |
-| BuildPulse Collector | CLI that runs the build/test/benchmark/analysis tools against a C++ checkout and produces `build_report.json` |
+| CODEFORGE Collector | CLI that runs the build/test/benchmark/analysis tools against a C++ checkout and produces `build_report.json` |
 | Build Analyzer | Build status, duration, warnings, errors, retries, binary size, artifacts |
 | Code Analyzer | Static analysis (clang-tidy, cppcheck), complexity (lizard), dependency/CMake scan |
 | Test Analyzer | ctest/Google Test results, coverage (gcov/lcov), flaky-test detection |
@@ -28,12 +28,12 @@ actionable insights through a React dashboard.
 ```text
 Git repo (C++ project)
    -> GitHub Actions / local
-   -> buildpulse collect [--project-id P --build-command ... --binary-path ...]
+   -> codeforge collect [--project-id P --build-command ... --binary-path ...]
         • builds the project, times it, captures compiler warnings/errors
         • runs ctest, benchmarks, clang-tidy/cppcheck, lizard, cmake dep scan
         • parses include graph for architecture drift
         • emits build_report.json (raw, reproducible)
-   -> buildpulse upload build_report.json --api-url ... --api-key ...
+   -> codeforge upload build_report.json --api-url ... --api-key ...
    -> POST /api/projects/{id}/builds        (FastAPI)
         • validates the report (Pydantic)
         • persists raw metrics in PostgreSQL (kept so all derived scores are reproducible)
@@ -54,7 +54,7 @@ integration.
 ## 5. Gaps the spec leaves open (identified by this analysis)
 
 1. **Report ingestion security** — the spec has `POST /api/builds` but no
-   authentication story. BuildPulse adds an optional `X-API-Key` header
+   authentication story. CODEFORGE adds an optional `X-API-Key` header
    (per-project shared secret) for ingestion and read access; disabled when no
    key is configured so it stays "basic auth if required".
 2. **Reproducibility contract** — the collector must record the tool versions,

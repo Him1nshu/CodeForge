@@ -7,7 +7,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from buildpulse.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult
+from codeforge.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult
 
 _LINE_RE = re.compile(
     r"^(?P<file>[^\s]+):(?P<line>\d+)(?::\d+)?:\s+(?P<level>warning|error|note)\s*:\s*(?P<message>.*?)(?:\s*\[(?P<rule>[^\]]+)\])?$"

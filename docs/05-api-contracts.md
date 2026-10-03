@@ -1,4 +1,4 @@
-# BuildPulse — API Contracts
+# CODEFORGE — API Contracts
 
 Base URL `/api`. Swagger at `/docs`. All list endpoints support
 `page`/`page_size` (default 1/50) pagination and return

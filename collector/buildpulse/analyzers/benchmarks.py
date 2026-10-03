@@ -10,7 +10,7 @@ from __future__ import annotations
 import re
 import shutil
 
-from buildpulse.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult, run_command
+from codeforge.analyzers.base import STATUS_OK, STATUS_SKIPPED, AnalyzerContext, AnalyzerResult, run_command
 
 _LINE = re.compile(
     r"^BENCHMARK\s+(\S+)\s+([\d.]+|-)\s+([\d.]+|-)\s+([\d.]+|-)\s+([\d.]+|-)\s+([\d.]+|-)\s+(\d+|-)\s*$",

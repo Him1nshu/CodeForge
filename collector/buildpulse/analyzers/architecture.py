@@ -11,7 +11,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from buildpulse.analyzers.base import STATUS_OK, AnalyzerContext, AnalyzerResult
+from codeforge.analyzers.base import STATUS_OK, AnalyzerContext, AnalyzerResult
 
 _CXX_SOURCE_SUFFIXES = {".cpp", ".cc", ".cxx", ".c", ".hpp", ".hh", ".h"}
 _JAVA_SOURCE_SUFFIXES = {".java"}

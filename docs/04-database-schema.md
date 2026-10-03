@@ -1,4 +1,4 @@
-# BuildPulse — PostgreSQL Schema
+# CODEFORGE — PostgreSQL Schema
 
 Normalized relational schema. All tables have a UUID `id` PK
 (`postgresql.UUID(as_uuid=True)`; SQLite-mapped behind SQLAlchemy so tests

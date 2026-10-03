@@ -1,16 +1,16 @@
 """Evaluation script: ingest the analytic-engine sample history end-to-end.
 
 For each release snapshot `sample-projects/analytic-engine/releases/vN`,
-rebuild the release's git history inside a temp work tree, run the buildpulse
+rebuild the release's git history inside a temp work tree, run the codeforge
 collector (config-driven), and POST the report to a live backend started on a
 fresh SQLite database. Prints the per-build health trend.
 
-Staging: the work tree lives under the OS temp dir (`buildpulse-eval/`), never
-inside the BuildPulse repo, so the collector's git analyzer (repo lookup, the
+Staging: the work tree lives under the OS temp dir (`codeforge-eval/`), never
+inside the CODEFORGE repo, so the collector's git analyzer (repo lookup, the
 complexity analyzer's `build/` path filter) sees only the releases.
 
 Requires: backend deps installed in the active venv (uvicorn, alembic) and
-`buildpulse` importable from that venv, plus g++ on PATH.
+`codeforge` importable from that venv, plus g++ on PATH.
 
 Intended for Windows/cmd. Change the command strings if porting to POSIX.
 """
@@ -32,13 +32,13 @@ ROOT = Path(__file__).resolve().parents[1]
 SAMPLE = ROOT / "sample-projects" / "analytic-engine"
 RELEASES = SAMPLE / "releases"
 BACKEND = ROOT / "backend"
-EVAL_ROOT = Path(tempfile.mkdtemp(prefix="buildpulse-eval-"))
+EVAL_ROOT = Path(tempfile.mkdtemp(prefix="codeforge-eval-"))
 WORK = EVAL_ROOT / "repos" / "analytic-engine"
 PORT = 8777
 API = f"http://127.0.0.1:{PORT}"
 DB = BACKEND / "eval.db"
 
-GIT_AUTHOR = ["-c", "user.name=BuildPulse Eval", "-c", "user.email=buildpulse-eval@local"]
+GIT_AUTHOR = ["-c", "user.name=CODEFORGE Eval", "-c", "user.email=codeforge-eval@local"]
 
 
 def run(args, cwd=None, capture=True):
@@ -76,7 +76,7 @@ def collect_and_upload(project_id: str, tag: str, sha: str):
     run(["git", "checkout", "-q", "--detach", sha], cwd=WORK)
     report = ROOT / "build" / f"cpp-{tag}.json"
     collect = run(
-        [sys.executable, "-m", "buildpulse.cli", "collect", "--repo", str(WORK), "--out", str(report)]
+        [sys.executable, "-m", "codeforge.cli", "collect", "--repo", str(WORK), "--out", str(report)]
     )
     if collect.returncode != 0:
         print(collect.stdout + collect.stderr)
@@ -85,7 +85,7 @@ def collect_and_upload(project_id: str, tag: str, sha: str):
         [
             sys.executable,
             "-m",
-            "buildpulse.cli",
+            "codeforge.cli",
             "upload",
             "--api",
             API,
@@ -103,7 +103,7 @@ def collect_and_upload(project_id: str, tag: str, sha: str):
 def main() -> int:
     if DB.exists():
         DB.unlink()
-    os.environ["BUILDPULSE_DATABASE_URL"] = f"sqlite:///{DB.as_posix()}"
+    os.environ["CODEFORGE_DATABASE_URL"] = f"sqlite:///{DB.as_posix()}"
     run([sys.executable, "-m", "alembic", "upgrade", "head"], cwd=BACKEND)
 
     server = subprocess.Popen(

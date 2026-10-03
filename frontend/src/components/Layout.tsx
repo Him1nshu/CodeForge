@@ -18,7 +18,7 @@ export function Layout() {
     <div className="flex h-full">
       <aside className="w-60 shrink-0 border-r border-bp-edge bg-bp-panel p-4">
         <div className="mb-6">
-          <div className="text-xl font-semibold tracking-tight">BuildPulse</div>
+          <div className="text-xl font-semibold tracking-tight">CODEFORGE</div>
           <div className="text-xs text-slate-400">Engineering Intelligence</div>
         </div>
         <nav className="flex flex-col gap-1 text-sm">

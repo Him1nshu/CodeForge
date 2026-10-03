@@ -10,7 +10,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import StaticPool
 
-os.environ.setdefault("BUILDPULSE_DATABASE_URL", "sqlite:///:memory:")
+os.environ.setdefault("CODEFORGE_DATABASE_URL", "sqlite:///:memory:")
 
 import app.models
 from app.core.db import Base

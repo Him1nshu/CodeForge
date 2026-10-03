@@ -1,4 +1,4 @@
-# BuildPulse — Development Roadmap
+# CODEFORGE — Development Roadmap
 
 Phases mirror the specification; each phase ends with a verifiable acceptance
 gate. Work is incremental: a working end-to-end MVP ships before advanced
@@ -28,7 +28,7 @@ features.
 - **Gate:** seeded degradation is detected with correct severity labels.
 
 ## Phase 5 — Collector CLI + analyzers
-- `buildpulse collect` runs tools, writes `build_report.json`; `buildpulse upload` POSTs it.
+- `codeforge collect` runs tools, writes `build_report.json`; `codeforge upload` POSTs it.
 - Graceful SKIPPED/UNSUPPORTED status for missing tools.
 - **Gate:** collect on the sample project produces a valid report; upload lands in DB.
 
@@ -39,7 +39,7 @@ features.
 - **Gate:** every chart consumes a live endpoint; empty/error/loading states; build passes.
 
 ## Phase 7 — CI integration & evaluation
-- GitHub Actions `buildpulse-analysis.yml`; sample-project experiments v1..v5;
+- GitHub Actions `codeforge-analysis.yml`; sample-project experiments v1..v5;
 - Evaluation framework generating the version comparison table from real metrics.
 - **Gate:** table values traceable to collected metrics; README runnable from clone.
 

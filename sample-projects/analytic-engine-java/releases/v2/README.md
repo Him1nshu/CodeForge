@@ -1,9 +1,9 @@
 # AnalyticEngine Java
 
-Sample Java project used to exercise BuildPulse's Java pipeline end-to-end:
-config-driven via `buildpulse.toml` (`language = java`, `test_format = auto`),
+Sample Java project used to exercise CODEFORGE's Java pipeline end-to-end:
+config-driven via `codeforge.toml` (`language = java`, `test_format = auto`),
 built with plain `javac` + `jar`, tested with the JUnit 5 console standalone
-launcher (see `buildpulse/tools/junit`).
+launcher (see `codeforge/tools/junit`).
 
 Three release commits tell the degradation story:
 

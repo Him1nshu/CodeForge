@@ -17,7 +17,7 @@ import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-from buildpulse.analyzers.base import (
+from codeforge.analyzers.base import (
     STATUS_OK,
     STATUS_SKIPPED,
     AnalyzerContext,

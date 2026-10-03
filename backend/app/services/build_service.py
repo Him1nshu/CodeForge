@@ -35,7 +35,7 @@ from app.models.health import EngineeringInsight, HealthScore
 from app.models.project import Project
 from app.schemas.build import BuildIngestResponse, BuildReport
 
-logger = logging.getLogger("buildpulse.services.build")
+logger = logging.getLogger("codeforge.services.build")
 
 TEST_STATUSES = ("passed", "failed")
 
