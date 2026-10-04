@@ -6,8 +6,12 @@ export function HealthTrendChart({ history }: { history: HealthHistoryPoint[] })
     return <p className="text-sm text-slate-500">No health history yet.</p>;
   }
   return (
-    <ResponsiveContainer width="100%" height={260}>
-      <LineChart data={history} margin={{ top: 8, right: 16, bottom: 0, left: -16 }}>
+    <figure
+      role="img"
+      aria-label={`Health score trend across ${history.length} builds, from build ${history[0].build_number} to build ${history[history.length - 1].build_number}`}
+    >
+      <ResponsiveContainer width="100%" height={260}>
+        <LineChart data={history} margin={{ top: 8, right: 16, bottom: 0, left: -16 }}>
         <XAxis
           dataKey="build_number"
           tick={{ fill: "#94a3b8", fontSize: 12 }}
@@ -29,7 +33,11 @@ export function HealthTrendChart({ history }: { history: HealthHistoryPoint[] })
           strokeWidth={2}
           dot={{ r: 3, fill: "#38bdf8" }}
         />
-      </LineChart>
-    </ResponsiveContainer>
+        </LineChart>
+      </ResponsiveContainer>
+      <figcaption className="sr-only">
+        Health scores by build: {history.map((point) => `build ${point.build_number}: ${point.overall_score.toFixed(1)}`).join(", ")}.
+      </figcaption>
+    </figure>
   );
 }

@@ -18,3 +18,18 @@ body {
   color: #e2e8f0;
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
+
+*:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

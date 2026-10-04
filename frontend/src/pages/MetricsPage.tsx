@@ -22,6 +22,7 @@ export function MetricsPage() {
   const cm = metrics.code_metrics;
   return (
     <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-semibold">Metrics</h1>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         <ScoreCard label="Binary size" value={metrics.metrics.binary_size} suffix=" B" />
         <ScoreCard label="Artifacts" value={metrics.metrics.artifact_count} />

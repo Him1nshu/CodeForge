@@ -24,6 +24,7 @@ export function TestsPage() {
 
   return (
     <div className="flex flex-col gap-4">
+      <h1 className="text-2xl font-semibold">Tests</h1>
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         <ScoreCard label="Total" value={t.total} />
         <ScoreCard label="Passed" value={t.passed} />

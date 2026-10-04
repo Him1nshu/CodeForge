@@ -2,39 +2,66 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../lib/api";
 import type { ProjectResponse } from "../lib/types";
-import { gradeColor } from "../components/ui";
+import { gradeColor, PageMessage } from "../components/ui";
 
 export function ProjectsListPage() {
   const [projects, setProjects] = useState<ProjectResponse[]>([]);
   const [q, setQ] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [refreshToken, setRefreshToken] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
+    setError(null);
     void api
       .listProjects(q || undefined)
       .then((data) => {
-        if (!cancelled) setProjects(data);
+        if (!cancelled) {
+          setProjects(data);
+          setLoading(false);
+        }
       })
-      .catch((e) => !cancelled && setError(String(e)));
+      .catch((e) => {
+        if (!cancelled) {
+          setError(String(e));
+          setLoading(false);
+        }
+      });
     return () => {
       cancelled = true;
     };
-  }, [q]);
+  }, [q, refreshToken]);
 
   return (
     <div className="max-w-4xl">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Projects</h1>
-        <input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Search…"
-          className="rounded-lg border border-bp-edge bg-slate-800 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
-        />
+        <div className="flex items-center gap-2">
+          <label htmlFor="project-search" className="sr-only">Search projects</label>
+          <input
+            id="project-search"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search projects"
+            className="w-44 rounded-lg border border-bp-edge bg-slate-800 px-3 py-1.5 text-sm placeholder:text-slate-500 focus-visible:outline-2 focus-visible:outline-sky-300 sm:w-56"
+          />
+          {q ? (
+            <button
+              type="button"
+              onClick={() => setQ("")}
+              className="rounded px-2 py-1 text-sm text-slate-400 hover:bg-slate-800 hover:text-white"
+              aria-label="Clear project search"
+            >
+              Clear
+            </button>
+          ) : null}
+        </div>
       </div>
-      {error ? <p className="text-sm text-red-400">{error}</p> : null}
-      {projects.length === 0 && !error ? (
+      {loading ? <PageMessage>Loading projects…</PageMessage> : null}
+      {error ? <PageMessage error onRetry={() => setRefreshToken((value) => value + 1)}>{error}</PageMessage> : null}
+      {!loading && projects.length === 0 && !error ? (
         <div className="rounded-lg border border-dashed border-bp-edge bg-bp-panel/60 p-8 text-center">
           <h2 className="text-lg font-medium text-slate-200">No projects yet</h2>
           <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-slate-400">
@@ -55,7 +82,7 @@ export function ProjectsListPage() {
           <Link
             key={p.id}
             to={`/projects/${p.id}/overview`}
-            className="rounded-lg border border-bp-edge bg-bp-panel p-4 transition hover:border-slate-500"
+            className="rounded-lg border border-bp-edge bg-bp-panel p-4 transition hover:border-sky-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
           >
             <div className="flex items-center justify-between">
               <div>
