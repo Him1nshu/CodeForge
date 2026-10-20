@@ -6,13 +6,15 @@ import { InsightsPage } from "./pages/InsightsPage";
 import { MetricsPage } from "./pages/MetricsPage";
 import { OverviewPage } from "./pages/OverviewPage";
 import { ProjectsListPage } from "./pages/ProjectsListPage";
+import { RepositorySetupPage } from "./pages/RepositorySetupPage";
 import { TestsPage } from "./pages/TestsPage";
 import { TrendsPage } from "./pages/TrendsPage";
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/projects" replace />} />
+      <Route path="/" element={<RepositorySetupPage />} />
+      <Route path="/projects/new" element={<RepositorySetupPage />} />
       <Route path="/projects" element={<ProjectsListPage />} />
       <Route path="/projects/:projectId" element={<Layout />}>
         <Route index element={<Navigate to="overview" replace />} />

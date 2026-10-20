@@ -34,7 +34,28 @@ async function request<T>(path: string): Promise<T> {
   return (await res.json()) as T;
 }
 
+async function requestJson<T>(path: string, method: "POST", body: unknown): Promise<T> {
+  const res = await fetch(`${BASE}${path}`, {
+    method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    let detail = res.statusText;
+    try {
+      const responseBody = await res.json();
+      if (typeof responseBody?.detail === "string") detail = responseBody.detail;
+    } catch {
+      /* non-json body */
+    }
+    throw new ApiError(res.status, detail);
+  }
+  return (await res.json()) as T;
+}
+
 export const api = {
+  createProject: (data: { project_name: string; repository_url: string }) =>
+    requestJson<ProjectResponse>("/projects", "POST", data),
   listProjects: (q?: string) => {
     const qs = q ? `?q=${encodeURIComponent(q)}` : "";
     return request<ProjectResponse[]>(`/projects${qs}`);

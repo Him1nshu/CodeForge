@@ -39,6 +39,12 @@ export function ProjectsListPage() {
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Projects</h1>
         <div className="flex items-center gap-2">
+          <Link
+            to="/projects/new"
+            className="rounded-md bg-sky-500 px-3 py-1.5 text-sm font-medium text-slate-950 transition hover:bg-sky-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+          >
+            Add repository
+          </Link>
           <label htmlFor="project-search" className="sr-only">Search projects</label>
           <input
             id="project-search"
